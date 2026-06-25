@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "../pages/Dashboard";
 import Employees from "../pages/Employees";
+import EmployeeProfile from "../pages/EmployeeProfile";
 import Attendance from "../pages/Attendance";
 import Recruitment from "../pages/Recruitment";
 import Interviews from "../pages/Interviews";
@@ -17,7 +18,10 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
+
       <Route path="/employees" element={<Employees />} />
+      <Route path="/employees/:id" element={<EmployeeProfile />} />
+
       <Route path="/attendance" element={<Attendance />} />
       <Route path="/recruitment" element={<Recruitment />} />
       <Route path="/interviews" element={<Interviews />} />
