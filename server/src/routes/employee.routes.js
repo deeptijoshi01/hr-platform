@@ -9,15 +9,18 @@ const {
   updateEmployee,
   deleteEmployee,
 } = require("../controllers/employee.controller");
+const { authorize } = require("../middleware/role.middleware");
 
-router.get("/", getAllEmployees);
+const { protect } = require("../middleware/auth.middleware");
 
-router.post("/", createEmployee);
+router.get("/", protect, authorize("Admin", "HR"), getAllEmployees);
 
-router.get("/:id", getEmployeeById);
+router.post("/", protect, authorize("Admin"), createEmployee);
 
-router.put("/:id", updateEmployee);
+router.get("/:id", protect, authorize("Admin", "HR", "Employee"), getEmployeeById);
 
-router.delete("/:id", deleteEmployee);
+router.put("/:id", protect, authorize("Admin", "HR"), updateEmployee);
+
+router.delete("/:id", protect, authorize("Admin"), deleteEmployee);
 
 module.exports = router;

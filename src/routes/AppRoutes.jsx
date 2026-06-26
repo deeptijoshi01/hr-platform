@@ -13,13 +13,28 @@ import Settings from "../pages/Settings";
 
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
+import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+     <Route
+  path="/"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
 
-      <Route path="/employees" element={<Employees />} />
+      <Route
+  path="/employees"
+  element={
+    <ProtectedRoute>
+      <Employees />
+    </ProtectedRoute>
+  }
+/>
       <Route path="/employees/:id" element={<EmployeeProfile />} />
 
       <Route path="/attendance" element={<Attendance />} />
